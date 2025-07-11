@@ -1,38 +1,39 @@
 package com.dataset.service;
 
-import com.dataset.service.model.RecordDTO;
+import com.dataset.service.model.request.RecordDTO;
 import com.dataset.service.model.deserializer.CustomRecordDTODeserializer;
 import com.dataset.service.repository.DepartmentRepository;
 import com.dataset.service.repository.EmployeeRepository;
-import com.dataset.service.service.DataSetService;
-import com.dataset.service.service.DepartmentService;
-import com.dataset.service.service.EmployeeService;
-import com.dataset.service.service.impl.DataSetServiceImpl;
-import com.dataset.service.service.impl.DepartmentServiceImpl;
-import com.dataset.service.service.impl.EmployeeServiceImpl;
+import com.dataset.service.service.factory.DataSetFactory;
+import com.dataset.service.service.impl.DepartmentDatasetService;
+import com.dataset.service.service.impl.EmployeeDatasetService;
 import com.dataset.service.service.proxy.DataSetServiceProxy;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import org.springframework.beans.factory.annotation.Qualifier;
+import jakarta.persistence.EntityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class DatasetServiceAutoConfiguration {
 
     @Bean
-    public EmployeeService employeeService(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository) {
-        return new EmployeeServiceImpl(employeeRepository, departmentRepository);
+    public DepartmentDatasetService getDepartmentDatasetService(DepartmentRepository departmentRepository,
+                                                                EntityManager entityManager) {
+        return new DepartmentDatasetService(departmentRepository, entityManager);
     }
 
     @Bean
-    public DepartmentService departmentService(DepartmentRepository departmentRepository) {
-        return new DepartmentServiceImpl(departmentRepository);
+    public EmployeeDatasetService getEmployeeDatasetService(EmployeeRepository employeeRepository,
+                                                            DepartmentRepository departmentRepository,
+                                                            EntityManager entityManager) {
+        return new EmployeeDatasetService(employeeRepository, departmentRepository, entityManager);
     }
 
-    @Bean(name = "dataSetServiceImpl")
-    public DataSetService dataSetServiceImpl(EmployeeService employeeService, DepartmentService departmentService) {
-        return new DataSetServiceImpl(employeeService, departmentService);
+
+    @Bean
+    public DataSetFactory dataSetFactory(EmployeeDatasetService employeeDatasetService,
+                                         DepartmentDatasetService departmentDatasetService) {
+        return new DataSetFactory(employeeDatasetService, departmentDatasetService);
     }
 
     @Bean
@@ -43,8 +44,7 @@ public class DatasetServiceAutoConfiguration {
     }
 
     @Bean
-    @Primary
-    public DataSetService dataSetService(@Qualifier("dataSetServiceImpl") DataSetService dataSetService) {
-        return new DataSetServiceProxy(dataSetService);
+    public DataSetServiceProxy dataSetServiceProxy(DataSetFactory dataSetFactory) {
+        return new DataSetServiceProxy(dataSetFactory);
     }
 }

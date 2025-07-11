@@ -1,4 +1,4 @@
-package com.dataset.service.model;
+package com.dataset.service.model.response;
 
 import java.util.UUID;
 

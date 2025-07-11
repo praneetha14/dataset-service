@@ -1,8 +1,8 @@
 package com.dataset.service.model.deserializer;
 
-import com.dataset.service.model.DepartmentDTO;
-import com.dataset.service.model.EmployeeDTO;
-import com.dataset.service.model.RecordDTO;
+import com.dataset.service.model.request.DepartmentDTO;
+import com.dataset.service.model.request.EmployeeDTO;
+import com.dataset.service.model.request.RecordDTO;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;

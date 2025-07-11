@@ -1,4 +1,4 @@
-package com.dataset.service.model;
+package com.dataset.service.model.request;
 
 import lombok.Getter;
 import lombok.Setter;

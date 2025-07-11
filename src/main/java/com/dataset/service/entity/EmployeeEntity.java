@@ -23,6 +23,7 @@ public class EmployeeEntity {
     @Column(name = "age")
     private int age;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "department_id", referencedColumnName = "id")
     private DepartmentEntity department;
 }

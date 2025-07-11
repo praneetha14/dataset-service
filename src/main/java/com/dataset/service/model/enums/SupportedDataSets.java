@@ -15,4 +15,8 @@ public enum SupportedDataSets {
     public static boolean isSupportedDataSet(String value) {
         return Arrays.stream(values()).anyMatch(v -> v.value.equalsIgnoreCase(value));
     }
+
+    public String getValue() {
+        return value;
+    }
 }
