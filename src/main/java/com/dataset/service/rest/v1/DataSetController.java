@@ -1,4 +1,4 @@
-package com.dataset.service.restcontroller;
+package com.dataset.service.rest.v1;
 
 import com.dataset.service.model.response.RecordCreateResponseVO;
 import com.dataset.service.model.request.RecordDTO;

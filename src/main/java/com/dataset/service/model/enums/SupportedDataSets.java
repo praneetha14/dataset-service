@@ -12,6 +12,11 @@ public enum SupportedDataSets {
         this.value = value;
     }
 
+    public static SupportedDataSets fromValue(String value) {
+        return Arrays.stream(values())
+                .filter(v -> v.value.equalsIgnoreCase(value)).findFirst().get();
+    }
+
     public static boolean isSupportedDataSet(String value) {
         return Arrays.stream(values()).anyMatch(v -> v.value.equalsIgnoreCase(value));
     }

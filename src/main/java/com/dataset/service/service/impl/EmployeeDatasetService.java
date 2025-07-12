@@ -2,6 +2,7 @@ package com.dataset.service.service.impl;
 
 import com.dataset.service.entity.DepartmentEntity;
 import com.dataset.service.entity.EmployeeEntity;
+import com.dataset.service.model.enums.SupportedDataSets;
 import com.dataset.service.model.request.EmployeeDTO;
 import com.dataset.service.model.request.RecordDTO;
 import com.dataset.service.model.response.EmployeeVO;
@@ -45,14 +46,15 @@ public class EmployeeDatasetService implements DataSetService {
         }
         EmployeeEntity employeeEntity = toEntity(employeeDTO, optionalDepartmentEntity.get());
         employeeEntity = employeeRepository.save(employeeEntity);
-        return new RecordCreateResponseVO("Record created successfully", "Employee_dataset", employeeEntity.getId());
+        return new RecordCreateResponseVO("Record created successfully", SupportedDataSets.EMPLOYEE.getValue(),
+                employeeEntity.getId());
     }
 
     @Override
     public RecordResponseVO getGroupedRecords(String groupBy) {
         List<EmployeeVO> employeeVOS = employeeRepository.findAllEmployeeDetails();
         Map<String, List<EmployeeVO>> data = groupAndGetData(employeeVOS, groupBy);
-        return new RecordResponseVO("Grouped data successfully", null, data, null);
+        return new RecordResponseVO("Fetched grouped records successfully", null, data, null);
     }
 
     @Override
@@ -70,7 +72,7 @@ public class EmployeeDatasetService implements DataSetService {
 
     @Override
     public RecordResponseVO getAllRecords() {
-        return new RecordResponseVO("Fetched All records successfully", null, null,
+        return new RecordResponseVO("Fetched all records successfully", null, null,
                 employeeRepository.findAllEmployeeDetails());
     }
 
@@ -97,7 +99,7 @@ public class EmployeeDatasetService implements DataSetService {
                         Object value = field.get(employee);
                         return value != null ? value.toString() : "null";
                     } catch (Exception ex) {
-                        throw new RuntimeException("Error while grouping records", ex);
+                        throw new RuntimeException("Error getting grouped records", ex);
                     }
                 }));
     }

@@ -1,6 +1,7 @@
 package com.dataset.service.service.impl;
 
 import com.dataset.service.entity.DepartmentEntity;
+import com.dataset.service.model.enums.SupportedDataSets;
 import com.dataset.service.model.request.DepartmentDTO;
 import com.dataset.service.model.request.RecordDTO;
 import com.dataset.service.model.response.DepartmentVO;
@@ -35,7 +36,8 @@ public class DepartmentDatasetService implements DataSetService {
         DepartmentDTO departmentDTO = (DepartmentDTO) recordDTO;
         DepartmentEntity departmentEntity = toEntity(departmentDTO);
         departmentEntity = departmentRepository.save(departmentEntity);
-        return new RecordCreateResponseVO("Record added successfully", "Department_dataset", departmentEntity.getId());
+        return new RecordCreateResponseVO("Record created successfully", SupportedDataSets.DEPARTMENT.getValue(),
+                departmentEntity.getId());
     }
 
     @Override
@@ -78,7 +80,7 @@ public class DepartmentDatasetService implements DataSetService {
     private Map<String, List<DepartmentVO>> groupAndGetData(List<DepartmentVO> departmentVOS, String groupBy) {
         return departmentVOS.stream().collect(Collectors.groupingBy(department -> {
             try {
-                Field field = department.getClass().getField(groupBy);
+                Field field = department.getClass().getDeclaredField(groupBy);
                 field.setAccessible(true);
                 Object value = field.get(department);
                 return value != null ? value.toString() : "null";
