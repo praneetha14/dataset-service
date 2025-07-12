@@ -17,7 +17,7 @@ This microservice is built using these technologies
 **Create Record API FLOW DIAGRAM**
 ![Create-record-api-flow](src/main/resources/create-record-api-flow.png)
 
-**SORT BY and GROUP API fLOW DIAGRAM**
+**SORT BY and GROUP API FLOW DIAGRAM**
 ![Query-record-api-flow](src/main/resources/flow-digram-query.png)
 
 🚀**How to run the API and test:**
