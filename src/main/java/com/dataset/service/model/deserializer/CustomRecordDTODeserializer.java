@@ -11,6 +11,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
+/***
+ * This is a custom deserializer to deserialize the Object of type RecordDTO.
+ */
 public class CustomRecordDTODeserializer extends JsonDeserializer<RecordDTO> {
 
     @Override

@@ -2,6 +2,9 @@ package com.dataset.service.model.request;
 
 import lombok.Getter;
 import lombok.Setter;
+/***
+ * DepartmentDTO is the payload or the request object for creating a Department Record.
+ */
 
 @Getter
 @Setter

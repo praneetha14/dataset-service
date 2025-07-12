@@ -21,6 +21,11 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
+/**
+ *  EmployeeDatasetService is the concrete implementation of DatasetService interface and provides the implementation of
+ *  methods related to createRecord and searchRecord for the employee Dataset.
+ */
 @RequiredArgsConstructor
 public class EmployeeDatasetService implements DataSetService {
 
@@ -37,6 +42,11 @@ public class EmployeeDatasetService implements DataSetService {
         return employeeEntity;
     }
 
+    /**
+     * creates the employee record based for the Employee Dataset
+     * @param recordDTO The parameter recordDTO holds the instance of EmployeeDTO for which an EmployeeRecord is to be created
+     * @return  RecordCreateResponseVO which contains the id for the created resource followed by success message and dataset name
+     */
     @Override
     public RecordCreateResponseVO createRecord(RecordDTO recordDTO) {
         EmployeeDTO employeeDTO = (EmployeeDTO) recordDTO;
@@ -50,6 +60,12 @@ public class EmployeeDatasetService implements DataSetService {
                 employeeEntity.getId());
     }
 
+
+    /***
+     * This groups the employee record for the given groupBy field
+     * @param groupBy This parameter holds the name of the field on which grouping needs to be done
+     * @return RecordResponseVO in which groupedRecords are set followed by a success message
+     */
     @Override
     public RecordResponseVO getGroupedRecords(String groupBy) {
         List<EmployeeVO> employeeVOS = employeeRepository.findAllEmployeeDetails();
@@ -57,18 +73,36 @@ public class EmployeeDatasetService implements DataSetService {
         return new RecordResponseVO("Fetched grouped records successfully", null, data, null);
     }
 
+    /***
+     * This sorts the all employee records based on the given sortBy field and sort direction
+     * @param sortBy This parameter holds the name of the field on which sorting needs to be done.
+     * @param order This parameter holds the direction in which sorting needs to be done.
+     * @return RecordResponseVO in which sortedRecords are set followed by a success message
+     */
     @Override
     public RecordResponseVO getSortedRecords(String sortBy, String order) {
         List<EmployeeVO> employeeVOS = sortAndGetData(sortBy, order);
         return new RecordResponseVO("Fetched sorted records successfully", employeeVOS, null, null);
     }
 
+    /***
+     * Sort and then groups employee records based on the provided sortBy, groupBy and order params.
+     * @param sortBy This parameter holds the name of the field on which sorting needs to be done.
+     * @param groupBy This parameter holds the name of the field on which grouping needs to be done.
+     * @param order This parameter holds the sort direction in which sorting needs to be done.
+     * @return RecordResponseVO in which sorted and grouped records are set followed by a success message.
+     */
     @Override
     public RecordResponseVO getSortedAndGroupedRecords(String sortBy, String groupBy, String order) {
         List<EmployeeVO> employeeVOS = sortAndGetData(sortBy, order);
         Map<String, List<EmployeeVO>> data = groupAndGetData(employeeVOS, groupBy);
         return new RecordResponseVO("Fetched sorted and grouped records successfully", null, data, null);
     }
+
+    /***
+     * Fetches all the employee records.
+     * @return RecordResponseVO where the List of employee records are set followed by a success message.
+     */
 
     @Override
     public RecordResponseVO getAllRecords() {
