@@ -1,6 +1,6 @@
 # Record SortBy and GroupBy API
-[![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://praneetha14.github.io/weather-information-service/javadoc/)
-![Coverage](https://raw.githubusercontent.com/praneetha14/weather-information-service/badges/coverage.svg)
+[![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://praneetha14.github.io/dataset-service/javadoc/)
+![Coverage](https://raw.githubusercontent.com/praneetha14/dataset-service/badges/coverage.svg)
 
 This github repository is a spring boot microservice which has a couple of APIs for creating a record and performing searching and sorting operations on the records for a particular dataset.
 
@@ -17,7 +17,7 @@ This microservice is built using these technologies
 **Create Record API FLOW DIAGRAM**
 ![Create-record-api-flow](src/main/resources/create-record-api-flow.png)
 
-**SORT BY and GROUP API fLOW DIAGRAM**
+**SORT BY and GROUP API FLOW DIAGRAM**
 ![Query-record-api-flow](src/main/resources/flow-digram-query.png)
 
 🚀**How to run the API and test:**
