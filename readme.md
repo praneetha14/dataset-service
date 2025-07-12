@@ -1,6 +1,6 @@
 # Record SortBy and GroupBy API
-[![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://praneetha14.github.io/weather-information-service/javadoc/)
-![Coverage](https://raw.githubusercontent.com/praneetha14/weather-information-service/badges/coverage.svg)
+[![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://praneetha14.github.io/dataset-service/javadoc/)
+![Coverage](https://raw.githubusercontent.com/praneetha14/dataset-service/badges/coverage.svg)
 
 This github repository is a spring boot microservice which has a couple of APIs for creating a record and performing searching and sorting operations on the records for a particular dataset.
 
