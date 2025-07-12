@@ -1,0 +1,13 @@
+com.dataset.service
+com.dataset.service.entity
+com.dataset.service.model
+com.dataset.service.model.deserializer
+com.dataset.service.model.enums
+com.dataset.service.model.request
+com.dataset.service.model.response
+com.dataset.service.repository
+com.dataset.service.rest.v1
+com.dataset.service.service
+com.dataset.service.service.factory
+com.dataset.service.service.impl
+com.dataset.service.service.proxy
