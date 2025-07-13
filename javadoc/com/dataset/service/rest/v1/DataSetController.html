@@ -80,9 +80,9 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">DataSetController</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">DataSetController handles operations related to datasets and their records.
-
-  This controller provides two REST endpoints in which 1st endpoint is for creating record based on input dataset provided.
-  2nd endpoint is to query the dataset record based on grouping and sorting criteria.</div>
+ <p>
+ This controller provides two REST endpoints in which 1st endpoint is for creating record based on input dataset provided.
+ 2nd endpoint is to query the dataset record based on grouping and sorting criteria.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -166,9 +166,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates a record for the specified dataset.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>datasetName</code> - </dd>
-<dd><code>recordDTO</code> - </dd>
+<dd><code>datasetName</code> - This is the name of dataset in which the record should be created.</dd>
+<dd><code>recordDTO</code> - The payload containing the record details.</dd>
 <dt>Returns:</dt>
+<dd>ResponseEntity containing the result of record creation.</dd>
 </dl>
 </section>
 </li>
@@ -178,20 +179,21 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@GetMapping("/{datasetName}/query")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../model/response/RecordResponseVO.html" title="class in com.dataset.service.model.response">RecordResponseVO</a>&gt;</span>&nbsp;<span class="element-name">groupByQuery</span><wbr><span class="parameters">(@PathVariable
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;datasetName,
- @RequestParam(required=false)
+ @RequestParam(required=false,defaultValue="departmentName")
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;groupBy,
- @RequestParam(required=false)
+ @RequestParam(required=false,defaultValue="age")
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;sortBy,
  @RequestParam(required=false,defaultValue="ASC")
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;order)</span></div>
 <div class="block">Queries the list of records for the specified dataset, with optional groupBy, sortBy operations</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>datasetName</code> - </dd>
-<dd><code>groupBy</code> - </dd>
-<dd><code>sortBy</code> - </dd>
-<dd><code>order</code> - </dd>
+<dd><code>datasetName</code> - This is the datasetName to which query is performed.</dd>
+<dd><code>groupBy</code> - This contains the name of the field to perform groupBy.</dd>
+<dd><code>sortBy</code> - This contains the name of the field to perform sortBy.</dd>
+<dd><code>order</code> - This is the order i.e. ASC or DESC.</dd>
 <dt>Returns:</dt>
+<dd>RecordResponseVO which contains the groupBy or sortBy records.</dd>
 </dl>
 </section>
 </li>
